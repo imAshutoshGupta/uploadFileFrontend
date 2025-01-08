@@ -19,7 +19,7 @@ const SignUp = () => {
                         }}>
                         <FormControl>
                             <TextField
-                                id="outlined-basic"
+                                id="username"
                                 label="Username"
                                 variant="outlined"
                                 type="name"
@@ -30,7 +30,7 @@ const SignUp = () => {
                         </FormControl>
                         <FormControl>
                             <TextField
-                                id="outlined-basic"
+                                id="email-signup"
                                 label="Email"
                                 variant="outlined"
                                 type="email"
@@ -42,7 +42,7 @@ const SignUp = () => {
                         </FormControl>
                         <FormControl>
                             <TextField
-                                id="outlined-password-input"
+                                id="password-signup"
                                 label="Password"
                                 type="password"
                                 autoComplete="current-password"

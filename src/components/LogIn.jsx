@@ -19,7 +19,7 @@ const LogIn = () => {
                         }}>
                         <FormControl>
                             <TextField
-                                id="outlined-basic"
+                                id="email-login"
                                 label="Email"
                                 variant="outlined"
                                 type="email"
@@ -31,7 +31,7 @@ const LogIn = () => {
                         </FormControl>
                         <FormControl>
                             <TextField
-                                id="outlined-password-input"
+                                id="password-login"
                                 label="Password"
                                 type="password"
                                 autoComplete="current-password"

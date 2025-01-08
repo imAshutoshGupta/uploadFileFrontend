@@ -4,11 +4,13 @@ import './App.css'
 import LogIn from './components/LogIn'
 import SignUp from './components/Signup'
 import NavbarAll from './components/NavbarAll'
+import HomePage from './components/Home'
 
 function App() {
   return (
     <>
-      <NavbarAll />
+
+      <HomePage />
       <LogIn />
       <SignUp />
     </>
