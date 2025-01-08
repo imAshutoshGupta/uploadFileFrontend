@@ -1,18 +1,23 @@
 import React from 'react'
 import { Container, Button, Typography, Box, Paper } from '@mui/material'
 import Grid from '@mui/material/Grid2'
-import NavbarAll from './NavbarAll'
+import { useNavigate } from 'react-router-dom'
 
 const HomePage = () => {
+
+    const navigate = useNavigate()
+
+    const handleGetStarted = () => {
+        navigate('/login')
+    }
+
     return (
         <div>
-            <NavbarAll />
-
             <Box sx={{ height: '60vh', backgroundColor: '#E3F2FD', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
                 <Typography variant="h3" component="div" align="center">
                     Welcome to CloudVault
                 </Typography>
-                <Button variant="contained" color="primary" sx={{ marginTop: 3 }}>
+                <Button variant="contained" color="primary" sx={{ marginTop: 3 }} onClick={handleGetStarted}>
                     Get Started
                 </Button>
             </Box>
@@ -56,7 +61,6 @@ const HomePage = () => {
                 </Container>
             </Box>
 
-            {/* Footer */}
             <Box sx={{ backgroundColor: '#333', color: '#AAAAAA', py: 3, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
                 <Container>
                     <Typography variant="body2" align="center">
