@@ -25,39 +25,30 @@ const LogIn = () => {
 
         setIsSubmitting(true)
         try {
-            await axios.post(`${import.meta.env.VITE_BACKEND_URL}/auth/login`,
+            await axios.post('http://localhost:5000/auth/login',
                 {
                     email,
                     password
-                }, {
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                withCredentials: true
-            })
+                }, { withCredentials: true })
 
             setSuccessMessage('Logged in successfully!')
             setOpenSuccessSnackbar(true)
             navigate('/dashboard')
 
-        } catch (err) {
-            const errMessage = err.response?.data?.message || 'Login failed';
-            setError(errMessage)
+        } catch (error) {
+            setError(error.response?.data?.message || 'Login failed')
             setOpenSnackbar(true)
         } finally {
             setIsSubmitting(false)
         }
     }
 
-    const handleChange = (e) => {
-        const { name, value } = e.target;
-        if (name === 'email') setEmail(value);
-        if (name === 'password') setPassword(value);
-    }
-
-    const handleCloseSnackbar = () => {
-        setOpenSnackbar(false)
-        setOpenSuccessSnackbar(false)
+    const handleCloseSnackbar = (type) => {
+        if (type === 'error') {
+            setOpenSnackbar(false)
+        } else {
+            setOpenSuccessSnackbar(false)
+        }
     }
 
     return (
@@ -87,7 +78,7 @@ const LogIn = () => {
                                 autoComplete="email"
                                 fullWidth
                                 value={email}
-                                onChange={handleChange}
+                                onChange={(e) => { setEmail(e.target.value) }}
                             />
                         </FormControl>
                         <FormControl>
@@ -98,7 +89,7 @@ const LogIn = () => {
                                 autoComplete="current-password"
                                 fullWidth
                                 value={password}
-                                onChange={handleChange}
+                                onChange={(e) => { setPassword(e.target.value) }}
                             />
                         </FormControl>
 
@@ -106,12 +97,11 @@ const LogIn = () => {
                             type="submit"
                             fullWidth
                             variant="contained"
-                            disabled={isSubmitting}  // Disable the button when submitting
                         >
                             {isSubmitting ? 'Logging in...' : 'Log in'}
                         </Button>
 
-                        <Typography sx={{ marginTop: 2 }}>
+                        <Typography sx={{ marginTop: 2 }} >
                             <Link href="#" underline="hover" color="inherit">
                                 Forgot your password?
                             </Link>
@@ -121,7 +111,7 @@ const LogIn = () => {
                             <Divider>or</Divider>
                         </Box>
 
-                        <Typography>
+                        <Typography >
                             Don't have an account?{' '}
                             <Link href="/signup" underline="hover">
                                 Sign up
@@ -131,22 +121,24 @@ const LogIn = () => {
                 </Card>
             </div>
 
+
             <Snackbar
                 open={openSnackbar}
                 autoHideDuration={3000}
-                onClose={handleCloseSnackbar}
+                onClose={() => handleCloseSnackbar('error')}
             >
-                <Alert onClose={handleCloseSnackbar} variant="filled" severity="error" sx={{ width: '100%' }}>
+                <Alert onClose={() => handleCloseSnackbar('error')} variant="filled" severity="error" sx={{ width: '100%' }}>
                     {error}
                 </Alert>
             </Snackbar>
 
+
             <Snackbar
                 open={openSuccessSnackbar}
                 autoHideDuration={3000}
-                onClose={handleCloseSnackbar}
+                onClose={() => handleCloseSnackbar('success')}
             >
-                <Alert onClose={handleCloseSnackbar} severity="success" sx={{ width: '100%' }}>
+                <Alert onClose={() => handleCloseSnackbar('success')} severity="success" sx={{ width: '100%' }}>
                     {successMessage}
                 </Alert>
             </Snackbar>
