@@ -25,12 +25,16 @@ const LogIn = () => {
 
         setIsSubmitting(true)
         try {
-            const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/auth/login`,
+            await axios.post(`${import.meta.env.VITE_BACKEND_URL}/auth/login`,
                 {
                     email,
                     password
-                }, { withCredentials: true })
-            
+                }, {
+                headers: {
+                    'Content-Type': 'application/json',
+                }
+            }, { withCredentials: true })
+
             setSuccessMessage('Logged in successfully!')
             setOpenSuccessSnackbar(true)
             navigate('/dashboard')
@@ -121,7 +125,7 @@ const LogIn = () => {
                 </Card>
             </div>
 
-           
+
             <Snackbar
                 open={openSnackbar}
                 autoHideDuration={3000}
@@ -132,7 +136,7 @@ const LogIn = () => {
                 </Alert>
             </Snackbar>
 
-            
+
             <Snackbar
                 open={openSuccessSnackbar}
                 autoHideDuration={3000}
