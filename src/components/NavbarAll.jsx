@@ -10,26 +10,26 @@ import { useNavigate } from 'react-router-dom'
 
 const NavbarAll = () => {
     const [isDrawerOpen, setIsDrawerOpen] = useState(false)
-    const [data, setData] = useState(null)
-    const [isAuthenticated, setIsAuthenticated] = useState(false)
+    // const [data, setData] = useState(null)
+    // const [isAuthenticated, setIsAuthenticated] = useState(false)
     const navigate = useNavigate()
 
-    const authCheck = async () => {
-        try {
-            const response = await axios.get('http://localhost:5000/dashboard', { withCredentials: true })
-            console.log('Response from authCheck:', response)
-            setIsAuthenticated(true)
-            setData(response.data[0].user_id.username)
-            console.log('Data after set:', response.data)
-        } catch (error) {
-            console.error("Authentication error:", error)
-            setIsAuthenticated(false)
-        }
-    }
+    // const authCheck = async () => {
+    //     try {
+    //         const response = await axios.get(`${import.meta.env.REACT_BACKEND_URL}/dashboard`, { withCredentials: true })
+    //         console.log('Response from authCheck:', response)
+    //         setIsAuthenticated(true)
+    //         setData(response.data[0].user_id.username)
+    //         console.log('Data after set:', response.data)
+    //     } catch (error) {
+    //         console.error("Authentication error:", error)
+    //         setIsAuthenticated(false)
+    //     }
+    // }
 
-    useEffect(() => {
-        authCheck()
-    }, [])
+    // useEffect(() => {
+    //     authCheck()
+    // }, [])
 
     const toggleDrawer = (open) => () => {
         setIsDrawerOpen(open)
