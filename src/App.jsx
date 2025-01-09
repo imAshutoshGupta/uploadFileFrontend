@@ -5,7 +5,7 @@ import LogIn from './components/LogIn'
 import NavbarAll from './components/NavbarAll'
 import HomePage from './components/Home'
 import Dashboard from './components/Dashboard'
-import SignUp from './components/Signup'
+import SignUp from './components/SignupAuth'
 
 function App() {
   return (
