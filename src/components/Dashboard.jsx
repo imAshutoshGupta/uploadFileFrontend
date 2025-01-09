@@ -28,7 +28,7 @@ const Dashboard = () => {
 
     const authCheck = async () => {
         try {
-            const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/dashboard`, { withCredentials: true });
+            const response = await axios.get('http://localhost:5000/dashboard', { withCredentials: true });
             setData(response.data);
             setIsAuthenticated(true);
         } catch (error) {
@@ -41,7 +41,7 @@ const Dashboard = () => {
 
     const handleLogout = async () => {
         try {
-            await axios.post(`${import.meta.env.VITE_BACKEND_URL}/auth/logout`, { withCredentials: true });
+            await axios.post('http://localhost:5000/auth/logout',{}, { withCredentials: true });
             setSnackbarMessage('Logged out successfully');
             setSnackbarSeverity('success');
             setSnackbarOpen(true);
@@ -62,10 +62,12 @@ const Dashboard = () => {
         setSnackbarOpen(true);
 
         try {
-            await axios.delete(`${import.meta.env.VITE_BACKEND_URL}/dashboard/delete-file/${id}`, { withCredentials: true });
+            await axios.delete(`http://localhost:5000/dashboard/delete-file/${id}`, { withCredentials: true });
             setData(data.filter(item => item._id !== id));
+            setFile(null)
             setSnackbarMessage('File deleted successfully');
             setSnackbarSeverity('success');
+            fileInputRef.current.value = ''
         } catch (error) {
             console.error('Error deleting file', error);
             setSnackbarMessage('Error deleting file');
@@ -99,7 +101,7 @@ const Dashboard = () => {
         setSnackbarOpen(true);
 
         try {
-            await axios.post(`${import.meta.env.VITE_BACKEND_URL}/dashboard/upload-file`, formData, { withCredentials: true });
+            await axios.post('http://localhost:5000/dashboard/upload-file', formData, { withCredentials: true });
             setFile(null);
             authCheck();
             setSnackbarMessage('File uploaded successfully');
@@ -236,16 +238,17 @@ const Dashboard = () => {
                                 color="primary"
                                 sx={{ marginTop: 3 }}
                             />
-                            <Button
-                                variant="contained"
-                                color="error"
-                                onClick={handleLogout}
-                                sx={{ m: 3, top: 16 }}
-                            >
-                                Logout
-                            </Button>
+
                         </>
                     )}
+                    <Button
+                        variant="contained"
+                        color="error"
+                        onClick={handleLogout}
+                        sx={{ m: 3, top: 16 }}
+                    >
+                        Logout
+                    </Button>
                 </>
             )}
 

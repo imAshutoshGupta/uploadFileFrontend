@@ -31,7 +31,7 @@ const SignUp = () => {
         }
         setIsSubmitting(true)
         try {
-            await axios.post(`${import.meta.env.VITE_BACKEND_URL}/auth/signup`,
+            const response = await axios.post('http://localhost:5000/auth/signup',
                 {
                     username,
                     email,
@@ -137,7 +137,7 @@ const SignUp = () => {
                             <Divider>or</Divider>
                         </Box>
                         <Typography >
-                            Don't have an account?{' '}
+                            Already have an account?{' '}
                             <Link href="/login" underline="hover">
                                 Log in
                             </Link>
