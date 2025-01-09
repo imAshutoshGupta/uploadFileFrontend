@@ -13,7 +13,7 @@ const HomePage = () => {
 
     return (
         <div>
-            <Box sx={{ height: '60vh', backgroundColor: '#E3F2FD', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
+            <Box sx={{ height: '80vh', backgroundColor: '#E3F2FD', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
                 <Typography variant="h3" component="div" align="center">
                     Welcome to CloudVault
                 </Typography>
