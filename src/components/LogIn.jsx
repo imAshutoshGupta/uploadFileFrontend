@@ -25,7 +25,7 @@ const LogIn = () => {
 
         setIsSubmitting(true)
         try {
-            await axios.post('http://localhost:5000/auth/login',
+            await axios.post(`${import.meta.env.VITE_API_BASE_URL}/auth/login`,
                 {
                     email,
                     password

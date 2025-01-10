@@ -28,7 +28,7 @@ const Dashboard = () => {
 
     const authCheck = async () => {
         try {
-            const response = await axios.get('http://localhost:5000/dashboard', { withCredentials: true });
+            const response = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/dashboard`, { withCredentials: true });
             setData(response.data);
             setIsAuthenticated(true);
         } catch (error) {
@@ -41,7 +41,7 @@ const Dashboard = () => {
 
     const handleLogout = async () => {
         try {
-            await axios.post('http://localhost:5000/auth/logout',{}, { withCredentials: true });
+            await axios.post(`${import.meta.env.VITE_API_BASE_URL}/auth/logout`,{}, { withCredentials: true });
             setSnackbarMessage('Logged out successfully');
             setSnackbarSeverity('success');
             setSnackbarOpen(true);
@@ -62,7 +62,7 @@ const Dashboard = () => {
         setSnackbarOpen(true);
 
         try {
-            await axios.delete(`http://localhost:5000/dashboard/delete-file/${id}`, { withCredentials: true });
+            await axios.delete(`${import.meta.env.VITE_API_BASE_URL}/dashboard/delete-file/${id}`, { withCredentials: true });
             setData(data.filter(item => item._id !== id));
             setFile(null)
             setSnackbarMessage('File deleted successfully');
@@ -101,7 +101,7 @@ const Dashboard = () => {
         setSnackbarOpen(true);
 
         try {
-            await axios.post('http://localhost:5000/dashboard/upload-file', formData, { withCredentials: true });
+            await axios.post(`${import.meta.env.VITE_API_BASE_URL}/dashboard/upload-file`, formData, { withCredentials: true });
             setFile(null);
             authCheck();
             setSnackbarMessage('File uploaded successfully');
